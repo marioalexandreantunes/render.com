@@ -17,7 +17,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='1234567890qwertyuiopasdfghjkl
 # ADD -- MA-- It allows: things like true, True, TRUE, 1, "1", TrUe, t, T
 DEBUG = os.getenv("DEBUG", 'False').lower() in ('true', '1', 't')
 
-# ADD --MA-- poderás e deverás colocar também .render.com
+# ADD --MA-- poderás e deverás colocar também .onrender.com
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS','127.0.0.1,localhost').split(',')
 
 INSTALLED_APPS = [
