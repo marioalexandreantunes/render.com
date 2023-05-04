@@ -95,24 +95,25 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
-# ADD --MA-- parte das static files , onde o whitenoise irá funcionar
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-# JUST IN CASE
-if not os.path.isdir(STATIC_ROOT):
-    os.makedirs(STATIC_ROOT, mode=0o755)
+# ADD --MA--
+if DEBUG is False: 
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
+    STATICFILES_DIRS = [
+        os.path.join(BASE_DIR, 'static')
+    ]
     
-# ADD --MA-- para funcionar no render.com
-if not DEBUG:
-    # https://whitenoise.readthedocs.io/en/latest/django.html
+   #  ADD --MA-- esta é a maneira correcta para Django 4.2+
+    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    
     STORAGES = {
-        # ADD --MA-- esta é a maneira correcta para Django 4.2+
+        # ...
         "staticfiles": {
             "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
         },
     }
+    # WHITENOISE_MANIFEST_STRICT = False
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
